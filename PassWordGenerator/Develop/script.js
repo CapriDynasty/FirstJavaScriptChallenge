@@ -8,14 +8,16 @@ var numbers = ["1","2","3","4","5","6","7","8","9","0"]
 var passlength = "8"
 var pass = " "
 
+generateBtn.addEventListener("click", writePassword);
+
 // Write password to the #password input
-function writePassword(event) {event.preventDefault
+function writePassword() {
   var prompts = promptUser();
   var passwordText = document.querySelector("#password");
 
   if (prompts) {
-    var newpass = generatePassword();
-    passwordText.value = newpass;
+    var newPass = generatePassword();
+    passwordText.value = newPass;
   }else{
     passwordText.value = "";
   }
@@ -23,8 +25,9 @@ function writePassword(event) {event.preventDefault
 }
 
 
-function generatePassword() {
+function generatePassword() {  
     var password= "";
+    writePassword()
     for(var i = 0; i<passlength; i++) {
       var randomNum = Math.floor(Math.random() * pass.length);
       password = password + pass[randomNum];
@@ -36,23 +39,27 @@ function generatePassword() {
 function promptUser() {
   pass = [];
 
-  passlength = parseInt(prompt("Password must be 8 - 128 characters long."));
+  passlength = parseInt(prompt("Password must be 8 - 81 characters long."));
 
   if(isNaN(passlength) || passlength < 8 || passlength > 128){
-    alert(" Password has to be 8 - 12 characters long. Try again.");
-    return false
+    alert(" Password has to be 8 - 81 characters long. Try again.");
+    return false;
   } 
   if (confirm("Would you like your password to contain lowercase characters?")){ 
-    pass = pass.push(lowercase);
+    pass = [pass].concat(lowercase);
+    console.log(pass)
   }
   if (confirm("Would you like your password to contain uppercase characters?")){ 
-    pass = pass.push(uppercase);
+    pass = pass.concat(uppercase);
+    console.log(pass)
   }
   if (confirm("Would you like your password to contain special characters?")){ 
-    pass = pass.push(special);
+    pass = pass.concat(special);
+    console.log(pass)
   }
   if (confirm("Would you like your password to contain numbers?")){ 
-    pass = pass.push(numbers);
+    pass = pass.concat(numbers);
+    console.log(pass)
   }
   return true;
 }
@@ -63,3 +70,4 @@ function promptUser() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", generatePassword);
+
