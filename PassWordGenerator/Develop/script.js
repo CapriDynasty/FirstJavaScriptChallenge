@@ -6,7 +6,7 @@ var lowercase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"
 var special = ["!","@","#","$","%","^","&","*","(",")","_","-","=","+","?","/","<",">"]
 var numbers = ["1","2","3","4","5","6","7","8","9","0"]
 var passlength = "8"
-var pass = " "
+// var pass = " "
 
 generateBtn.addEventListener("click", writePassword);
 
@@ -20,6 +20,7 @@ function writePassword() {
     passwordText.value = newPass;
   }else{
     passwordText.value = "";
+
   }
   
 }
@@ -27,7 +28,6 @@ function writePassword() {
 
 function generatePassword() {  
     var password= "";
-    writePassword()
     for(var i = 0; i<passlength; i++) {
       var randomNum = Math.floor(Math.random() * pass.length);
       password = password + pass[randomNum];
@@ -37,7 +37,8 @@ function generatePassword() {
   }
 
 function promptUser() {
-  pass = [];
+
+   pass = [];
 
   passlength = parseInt(prompt("Password must be 8 - 81 characters long."));
 
@@ -70,4 +71,3 @@ function promptUser() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", generatePassword);
-
